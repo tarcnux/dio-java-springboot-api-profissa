@@ -85,6 +85,11 @@ public class Parking {
 
 	public void setBill(Double bill) {
 		this.bill = bill;
-	}	
-	
+	}
+
+	@Override
+	public String toString() {
+		return "Parking [id=" + id + ", license=" + license + ", state=" + state + ", model=" + model + ", color="
+				+ color + ", entryDate=" + entryDate + ", exitDate=" + exitDate + ", bill=" + bill + "]";
+	}		
 }

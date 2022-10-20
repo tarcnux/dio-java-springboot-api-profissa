@@ -1,5 +1,6 @@
 package one.digitalinnovation.parking.service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ public class ParkingService {
 	
 	private static Map<String, Parking> parkingMap = new HashMap<String, Parking>();
 	
+	//Mock
 	static {
 		var id_1 = getUUID();		
 		var parking_1 = new Parking(id_1, "DMS-1122", "SC", "CELTA", "PRETO");		
@@ -31,16 +33,32 @@ public class ParkingService {
 	
 	public List<Parking> findAll() {
 		System.out.println("ParkingService findAll");
-		return parkingMap.values().stream().collect(Collectors.toList());
+		var parkingList = parkingMap.values().stream().collect(Collectors.toList());
+		parkingList.forEach(System.out::println); //method reference
+		return parkingList;
 	}
 
-	private static String getUUID() {		
-		return UUID.randomUUID().toString().replace("-", "");
+	private static String getUUID() {
+		var uuid =  UUID.randomUUID().toString().replace("-", "");
+		System.out.println("ParkingService getUUID uudi: " + uuid);
+		return uuid;
 	}
 
 	public Parking findById(String id) {
 		System.out.println("ParkingService findById");
-		return parkingMap.get(id);
+		var parkingResult = parkingMap.get(id);
+		System.out.println("ParkingService findById parkingResult:\n" + parkingResult);
+		return parkingResult;
+	}
+
+	public Parking create(Parking parkingCreate) {
+		System.out.println("ParkingService create");
+		String uuid = getUUID();
+		parkingCreate.setId(uuid);
+		parkingCreate.setEntryDate(LocalDateTime.now());
+		parkingMap.put(uuid, parkingCreate);
+		System.out.println("ParkingService create parkingCreate:\n" + parkingCreate);
+		return parkingCreate;
 	}
 
 }

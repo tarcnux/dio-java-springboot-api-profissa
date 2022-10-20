@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "78af55f4-cc75-438f-8b0f-fa384486abe8",
+		"name": "DIO API REST Spring Boot Profissa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15797843"
+	},
+	"item": [
+		{
+			"name": "Create a parking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"license\": \"TTT-2345\",\r\n\"state\": \"RS\",\r\n\"model\": \"LOGAN\",\r\n\"color\": \"PRATA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/parking/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all parking",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/parking/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One parking",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/parking/8c05f1e6a58742e8a32884b0ddde8476",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking",
+						"8c05f1e6a58742e8a32884b0ddde8476"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
