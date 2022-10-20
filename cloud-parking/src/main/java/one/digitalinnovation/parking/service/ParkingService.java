@@ -7,8 +7,10 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import one.digitalinnovation.parking.exception.ParkingNotFoundException;
 import one.digitalinnovation.parking.model.Parking;
 
 @Service
@@ -46,8 +48,11 @@ public class ParkingService {
 
 	public Parking findById(String id) {
 		System.out.println("ParkingService findById");
-		var parkingResult = parkingMap.get(id);
-		System.out.println("ParkingService findById parkingResult:\n" + parkingResult);
+		var parkingResult = parkingMap.get(id);	
+		if(parkingResult == null) {
+			throw new ParkingNotFoundException(id);
+		}
+		System.out.println("ParkingService findById parkingResult: " + parkingResult);
 		return parkingResult;
 	}
 
@@ -59,6 +64,19 @@ public class ParkingService {
 		parkingMap.put(uuid, parkingCreate);
 		System.out.println("ParkingService create parkingCreate:\n" + parkingCreate);
 		return parkingCreate;
+	}
+
+	public void delete(String id) {
+		System.out.println("ParkingService create");
+		var parking = findById(id);
+		parkingMap.remove(parking.getId());
+	}
+
+	public Parking update(String id, Parking parkingCreate) {
+		var parking = findById(id);
+		parking.setColor(parkingCreate.getColor()); //just change the color
+		parkingMap.replace(id, parking);
+		return parking;
 	}
 
 }
